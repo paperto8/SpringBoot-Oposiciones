@@ -20,8 +20,12 @@ public class Respuestas {
 	private Integer respuesta_id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "PREGUNTA_ID", referencedColumnName = "PREGUNTA_ID")
-	private Preguntas pregunta_id;
+	@JoinColumn(name = "PREGUNTA_ID" , referencedColumnName = "PREGUNTA_ID", insertable = false, updatable = false)
+	private Preguntas preguntas;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "TIPO_PREGUNTA_ID", referencedColumnName = "TIPO_PREGUNTA_ID", insertable = false, updatable = false)
+	private TiposPreguntas tiposPreguntas;
 
 	@Column(name = "TITULO")
 	private Integer titulo;
@@ -40,61 +44,6 @@ public class Respuestas {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((correcta == null) ? 0 : correcta.hashCode());
-		result = prime * result + ((explicacionCorrecta == null) ? 0 : explicacionCorrecta.hashCode());
-		result = prime * result + ((pregunta_id == null) ? 0 : pregunta_id.hashCode());
-		result = prime * result + ((respuesta_id == null) ? 0 : respuesta_id.hashCode());
-		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Respuestas other = (Respuestas) obj;
-		if (correcta == null) {
-			if (other.correcta != null)
-				return false;
-		} else if (!correcta.equals(other.correcta))
-			return false;
-		if (explicacionCorrecta == null) {
-			if (other.explicacionCorrecta != null)
-				return false;
-		} else if (!explicacionCorrecta.equals(other.explicacionCorrecta))
-			return false;
-		if (pregunta_id == null) {
-			if (other.pregunta_id != null)
-				return false;
-		} else if (!pregunta_id.equals(other.pregunta_id))
-			return false;
-		if (respuesta_id == null) {
-			if (other.respuesta_id != null)
-				return false;
-		} else if (!respuesta_id.equals(other.respuesta_id))
-			return false;
-		if (titulo == null) {
-			if (other.titulo != null)
-				return false;
-		} else if (!titulo.equals(other.titulo))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Respuestas [respuesta_id=" + respuesta_id + ", pregunta_id=" + pregunta_id + ", titulo=" + titulo
-				+ ", correcta=" + correcta + ", explicacionCorrecta=" + explicacionCorrecta + "]";
-	}
-
 	/**
 	 * @return the respuesta_id
 	 */
@@ -110,17 +59,31 @@ public class Respuestas {
 	}
 
 	/**
-	 * @return the pregunta_id
+	 * @return the preguntas
 	 */
-	public Preguntas getPregunta_id() {
-		return pregunta_id;
+	public Preguntas getPreguntas() {
+		return preguntas;
 	}
 
 	/**
-	 * @param pregunta_id the pregunta_id to set
+	 * @param preguntas the preguntas to set
 	 */
-	public void setPregunta_id(Preguntas pregunta_id) {
-		this.pregunta_id = pregunta_id;
+	public void setPreguntas(Preguntas preguntas) {
+		this.preguntas = preguntas;
+	}
+
+	/**
+	 * @return the tiposPreguntas
+	 */
+	public TiposPreguntas getTiposPreguntas() {
+		return tiposPreguntas;
+	}
+
+	/**
+	 * @param tiposPreguntas the tiposPreguntas to set
+	 */
+	public void setTiposPreguntas(TiposPreguntas tiposPreguntas) {
+		this.tiposPreguntas = tiposPreguntas;
 	}
 
 	/**

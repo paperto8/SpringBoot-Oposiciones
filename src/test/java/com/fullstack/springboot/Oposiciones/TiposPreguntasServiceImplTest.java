@@ -3,7 +3,6 @@
  */
 package com.fullstack.springboot.Oposiciones;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.sql.SQLException;
@@ -23,7 +22,6 @@ import org.springframework.jdbc.datasource.init.ScriptException;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.fullstack.springboot.Oposiciones.Controllers.Impl.PreguntasControllerImpl;
 import com.fullstack.springboot.Oposiciones.Entities.TiposPreguntas;
 import com.fullstack.springboot.Oposiciones.Service.TiposPreguntasService;
 
@@ -51,11 +49,11 @@ public class TiposPreguntasServiceImplTest {
 				new ClassPathResource(CREATE_TIPOS_PREGUNTAS_SQL_SCRIPT));
 	}
 
-	@After
-	public void after() throws ScriptException, SQLException {
-		ScriptUtils.executeSqlScript(jdbc.getDataSource().getConnection(),
-				new ClassPathResource(DROP_TIPOS_PREGUNTAS_SQL_SCRIPT));
-	}
+//	@After
+//	public void after() throws ScriptException, SQLException {
+//		ScriptUtils.executeSqlScript(jdbc.getDataSource().getConnection(),
+//				new ClassPathResource(DROP_TIPOS_PREGUNTAS_SQL_SCRIPT));
+//	}
 
 	@Test
 	public void tiposPreguntasServiceFillAllTest() {

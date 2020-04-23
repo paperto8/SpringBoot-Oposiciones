@@ -1,10 +1,17 @@
 package com.fullstack.springboot.Oposiciones.Entities;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,73 +21,34 @@ public class TiposPreguntas {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "TIPO_PREGUNTA_ID")
-	private Integer pregunta_id;
+	private Integer tipo_pregunta_id;
 
 	@Column(name = "TITULO")
 	private String titulo;
 
+	@OneToMany(mappedBy = "tiposPreguntas", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	private Set<Temarios> temarios;
+
+	/**
+	 * 
+	 */
 	public TiposPreguntas() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @param pregunta_id
-	 * @param titulo
+	 * @return the tipo_pregunta_id
 	 */
-	public TiposPreguntas(Integer pregunta_id, String titulo) {
-		super();
-		this.pregunta_id = pregunta_id;
-		this.titulo = titulo;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((pregunta_id == null) ? 0 : pregunta_id.hashCode());
-		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		TiposPreguntas other = (TiposPreguntas) obj;
-		if (pregunta_id == null) {
-			if (other.pregunta_id != null)
-				return false;
-		} else if (!pregunta_id.equals(other.pregunta_id))
-			return false;
-		if (titulo == null) {
-			if (other.titulo != null)
-				return false;
-		} else if (!titulo.equals(other.titulo))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "TiposPreguntas [pregunta_id=" + pregunta_id + ", titulo=" + titulo + "]";
+	public Integer getTipo_pregunta_id() {
+		return tipo_pregunta_id;
 	}
 
 	/**
-	 * @return the pregunta_id
+	 * @param tipo_pregunta_id the tipo_pregunta_id to set
 	 */
-	public Integer getPregunta_id() {
-		return pregunta_id;
-	}
-
-	/**
-	 * @param pregunta_id the pregunta_id to set
-	 */
-	public void setPregunta_id(Integer pregunta_id) {
-		this.pregunta_id = pregunta_id;
+	public void setTipo_pregunta_id(Integer tipo_pregunta_id) {
+		this.tipo_pregunta_id = tipo_pregunta_id;
 	}
 
 	/**
@@ -95,6 +63,20 @@ public class TiposPreguntas {
 	 */
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
+	}
+
+	/**
+	 * @return the temarios
+	 */
+	public Set<Temarios> getTemarios() {
+		return temarios;
+	}
+
+	/**
+	 * @param temarios the temarios to set
+	 */
+	public void setTemarios(Set<Temarios> temarios) {
+		this.temarios = temarios;
 	}
 
 }
